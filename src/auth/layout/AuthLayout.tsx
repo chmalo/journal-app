@@ -2,7 +2,7 @@ import { Grid, Typography } from "@mui/material"
 import React from "react"
 
 interface Props {
-  children: React.ReactElement
+  children: React.ReactNode
   title: string
 }
 

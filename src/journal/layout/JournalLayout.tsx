@@ -2,13 +2,13 @@ import { Box, Toolbar } from "@mui/material"
 import { NavBar, Sidebar } from "../components"
 import React from "react"
 
-// interface Props {
-//   children: React.ReactElement
-// }
+interface Props {
+  children: React.ReactNode
+}
 
 const drawerWidth = 240
 
-export const JournalLayout = ({ children }: any) => {
+export const JournalLayout = ({ children }: Props) => {
   return (
     <Box sx={{ display: "flex" }}>
       <NavBar drawerWidth={drawerWidth} />
