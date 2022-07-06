@@ -6,3 +6,8 @@ export interface authState {
   photoURL: string | null
   errorMessage: string | null
 }
+
+export interface formValues {
+  email?: string
+  password?: string
+}

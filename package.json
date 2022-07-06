@@ -36,6 +36,7 @@
     "eslint-plugin-n": "^15.2.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.30.0",
+    "firebase": "^9.8.4",
     "jsdom": "^19.0.0",
     "prettier": "2.6.2",
     "react-redux": "^8.0.2",

@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { authState } from "../interfaces"
+import { authState } from "../../interfaces"
 
 const initialState: authState = {
-  status: "checking", // 'no-authenticated', 'authenticated'
+  status: "no-authenticated", // 'checking', 'authenticated'
   uid: null,
   email: null,
   displayName: null,
@@ -16,7 +16,9 @@ export const authSlice = createSlice({
   reducers: {
     login: (state, action) => {},
     logout: (state, payload) => {},
-    checkingCredentials: (state) => {},
+    checkingCredentials: (state) => {
+      state.status = "checking"
+    },
   },
 })
 
