@@ -8,6 +8,8 @@ export interface authState {
 }
 
 export interface formValues {
+  displayName?: string
   email?: string
   password?: string
+  confirmPassword?: string
 }
