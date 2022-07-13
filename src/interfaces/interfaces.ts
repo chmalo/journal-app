@@ -7,9 +7,16 @@ export interface authState {
   errorMessage: string | null
 }
 
-export interface formValues {
+export interface FormValues {
   displayName?: string
   email?: string
   password?: string
   confirmPassword?: string
+}
+
+export interface FormValidations {
+  displayName?: (string | ((value: string) => boolean))[]
+  email?: (string | ((value: string) => boolean))[]
+  password?: (string | ((value: string) => boolean))[]
+  confirmPassword?: (string | ((value: string, password: string) => boolean))[]
 }

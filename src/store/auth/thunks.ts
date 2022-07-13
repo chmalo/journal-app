@@ -1,9 +1,9 @@
 import { checkingCredentials, login, logout } from "./authSlice"
 import { AppDispatch } from "../store"
-import { formValues } from "../../interfaces"
+import { FormValues } from "../../interfaces"
 import { singInWithGoogle } from "../../firebase/providers"
 
-export const checkingAuthentication = ({ email, password }: formValues) => {
+export const checkingAuthentication = ({ email, password }: FormValues) => {
   return async (dispatch: AppDispatch) => {
     dispatch(checkingCredentials())
   }
