@@ -1,14 +1,19 @@
-import { FormEvent, useState } from "react"
+import { FormEvent, useMemo, useState } from "react"
 import { Link as RouterLink } from "react-router-dom"
-import { Button, Grid, Link, TextField, Typography } from "@mui/material"
+import { Alert, Button, Grid, Link, TextField, Typography } from "@mui/material"
 import { AuthLayout } from "../layout/AuthLayout"
-import { useAppDispatch, useForm } from "../../hooks"
+import { useAppDispatch, useAppSelector, useForm } from "../../hooks"
 import { formData, formRegisterValidations } from "./registerPage"
 import { starCreatingUserWithEmailPassword } from "../../store/auth"
 
 export const RegisterPage = () => {
   const dispatch = useAppDispatch()
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const { status, errorMessage } = useAppSelector((state) => state.auth)
+  const isCheckingAuthentication = useMemo(
+    () => status === "checking",
+    [status]
+  )
 
   const {
     formState,
@@ -102,8 +107,17 @@ export const RegisterPage = () => {
             />
           </Grid>
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
+            <Grid item xs={12} display={errorMessage ? "" : "none"}>
+              <Alert severity="error">{errorMessage}</Alert>
+            </Grid>
+
             <Grid item xs={12}>
-              <Button variant="contained" fullWidth type="submit">
+              <Button
+                variant="contained"
+                fullWidth
+                type="submit"
+                disabled={isCheckingAuthentication}
+              >
                 Crear cuenta
               </Button>
             </Grid>
