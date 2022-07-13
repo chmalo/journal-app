@@ -1,29 +1,29 @@
 import { FormEvent, useMemo } from "react"
 import { Link as RouterLink } from "react-router-dom"
-import { Button, Grid, Link, TextField, Typography } from "@mui/material"
+import { Alert, Button, Grid, Link, TextField, Typography } from "@mui/material"
 import { Google } from "@mui/icons-material"
 
 import { AuthLayout } from "../layout/AuthLayout"
 import { useAppDispatch, useAppSelector, useForm } from "../../hooks"
-import { checkingAuthentication, startGoogleSingnIn } from "../../store/auth"
+import {
+  startGoogleSingnIn,
+  startLoginWithEmailPassword,
+} from "../../store/auth"
+import { formData } from "./loginPage"
 
 export const LoginPage = () => {
-  const { status } = useAppSelector((state) => state.auth)
+  const { status, errorMessage } = useAppSelector((state) => state.auth)
   const dispatch = useAppDispatch()
-  const { email, password, onInputChange } = useForm({
-    email: "chmalo.f@gmail.com",
-    password: "123456",
-  })
+  const { email, password, onInputChange } = useForm(formData)
 
   const isAuthenticated = useMemo(() => status === "checking", [status])
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    dispatch(checkingAuthentication({ email, password }))
+    dispatch(startLoginWithEmailPassword({ email, password }))
   }
 
   const onGoogleSignIn = () => {
-    console.log("onGoogleSignIn")
     dispatch(startGoogleSingnIn())
   }
 
@@ -55,6 +55,10 @@ export const LoginPage = () => {
             />
           </Grid>
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
+            <Grid item xs={12} display={errorMessage ? "" : "none"}>
+              <Alert severity="error">{errorMessage}</Alert>
+            </Grid>
+
             <Grid item xs={12} sm={6}>
               <Button
                 type="submit"
