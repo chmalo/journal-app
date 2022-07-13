@@ -2,13 +2,14 @@ import { FormEvent, useState } from "react"
 import { Link as RouterLink } from "react-router-dom"
 import { Button, Grid, Link, TextField, Typography } from "@mui/material"
 import { AuthLayout } from "../layout/AuthLayout"
-import { useForm } from "../../hooks"
+import { useAppDispatch, useForm } from "../../hooks"
 import { formData, formRegisterValidations } from "./registerPage"
+import { starCreatingUserWithEmailPassword } from "../../store/auth"
 
 export const RegisterPage = () => {
+  const dispatch = useAppDispatch()
   const [formSubmitted, setFormSubmitted] = useState(false)
 
-  // @ts-ignore
   const {
     formState,
     displayName,
@@ -26,6 +27,16 @@ export const RegisterPage = () => {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setFormSubmitted(true)
+
+    if (!isFormValid) return
+
+    dispatch(
+      starCreatingUserWithEmailPassword({
+        displayName,
+        email,
+        password,
+      })
+    )
     console.log("onSubmit", formState)
   }
 

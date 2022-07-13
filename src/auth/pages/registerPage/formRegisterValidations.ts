@@ -6,8 +6,7 @@ export const formRegisterValidations = {
     "La contraseña debe tener mas de 6 caracteres",
   ],
   confirmPassword: [
-    (value: string, password: string) =>
-      value.length >= 6 && value === password,
+    (value: string, password: string) => value.length >= 6,
     "La contraseña debe tener mas de 6 caracteres",
   ],
 }

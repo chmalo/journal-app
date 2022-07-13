@@ -1,7 +1,10 @@
 import { checkingCredentials, login, logout } from "./authSlice"
 import { AppDispatch } from "../store"
 import { FormValues } from "../../interfaces"
-import { singInWithGoogle } from "../../firebase/providers"
+import {
+  registerUserWithEmailPassword,
+  singInWithGoogle,
+} from "../../firebase/providers"
 
 export const checkingAuthentication = ({ email, password }: FormValues) => {
   return async (dispatch: AppDispatch) => {
@@ -20,5 +23,31 @@ export const startGoogleSingnIn = () => {
     }
 
     dispatch(login(result))
+  }
+}
+
+export const starCreatingUserWithEmailPassword = ({
+  displayName,
+  email,
+  password,
+}: {
+  displayName: string
+  email: string
+  password: string
+}) => {
+  return async (dispatch: AppDispatch) => {
+    dispatch(checkingCredentials())
+
+    const resp = await registerUserWithEmailPassword({
+      displayName,
+      email,
+      password,
+    })
+
+    if (!resp.ok) {
+      return dispatch(logout(resp))
+    }
+
+    dispatch(login(resp))
   }
 }
