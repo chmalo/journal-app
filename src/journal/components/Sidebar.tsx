@@ -12,8 +12,11 @@ import {
   Typography,
 } from "@mui/material"
 import { TurnedInNot } from "@mui/icons-material"
+import { useAppSelector } from "../../hooks"
 
 export const Sidebar = ({ drawerWidth }: { drawerWidth: number }) => {
+  const { displayName } = useAppSelector((state) => state.auth)
+
   return (
     <Box
       component="nav"
@@ -29,7 +32,7 @@ export const Sidebar = ({ drawerWidth }: { drawerWidth: number }) => {
       >
         <Toolbar>
           <Typography variant="h6" noWrap component="div">
-            Christian Fernandez
+            {displayName}
           </Typography>
         </Toolbar>
         <Divider />

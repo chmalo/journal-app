@@ -3,6 +3,7 @@ import { AppDispatch } from "../store"
 import { FormValues } from "../../interfaces"
 import {
   loginWithEmailPassword,
+  logoutFireBase,
   registerUserWithEmailPassword,
   singInWithGoogle,
 } from "../../firebase/providers"
@@ -70,5 +71,13 @@ export const startLoginWithEmailPassword = ({
     }
 
     dispatch(login(result))
+  }
+}
+
+export const startLogout = () => {
+  return async (dispatch: AppDispatch) => {
+    await logoutFireBase()
+
+    dispatch(logout({}))
   }
 }
