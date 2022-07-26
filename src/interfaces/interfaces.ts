@@ -14,9 +14,9 @@ export interface FormValues {
   confirmPassword?: string
 }
 
-export interface FormValidations {
-  displayName?: (string | ((value: string) => boolean))[]
-  email?: (string | ((value: string) => boolean))[]
-  password?: (string | ((value: string) => boolean))[]
-  confirmPassword?: (string | ((value: string, password: string) => boolean))[]
+export interface JournalState {
+  isSaving: boolean
+  messageSaved: string
+  notes: any[]
+  active: null
 }

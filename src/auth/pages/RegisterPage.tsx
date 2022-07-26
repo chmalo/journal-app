@@ -5,11 +5,14 @@ import { AuthLayout } from "../layout/AuthLayout"
 import { useAppDispatch, useAppSelector, useForm } from "../../hooks"
 import { formData, formRegisterValidations } from "./registerPage"
 import { starCreatingUserWithEmailPassword } from "../../store/auth"
+import { RootState } from "../../store"
 
 export const RegisterPage = () => {
   const dispatch = useAppDispatch()
   const [formSubmitted, setFormSubmitted] = useState(false)
-  const { status, errorMessage } = useAppSelector((state) => state.auth)
+  const { status, errorMessage } = useAppSelector(
+    (state: RootState) => state.auth
+  )
   const isCheckingAuthentication = useMemo(
     () => status === "checking",
     [status]
