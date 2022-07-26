@@ -14,9 +14,17 @@ export interface FormValues {
   confirmPassword?: string
 }
 
+export interface Notes {
+  id?: string | number
+  body: string
+  title: string
+  date: number
+  imageUrls?: string
+}
+
 export interface JournalState {
   isSaving: boolean
   messageSaved: string
-  notes: any[]
+  notes: Notes[]
   active: null
 }
