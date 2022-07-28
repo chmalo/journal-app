@@ -19,7 +19,7 @@ export interface Notes {
   body: string
   title: string
   date: number
-  imageUrls?: string
+  imageUrls: []
 }
 
 export interface JournalState {

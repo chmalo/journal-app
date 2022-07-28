@@ -11,7 +11,13 @@ import { Notes } from "../../interfaces"
 import { useAppDispatch } from "../../hooks"
 import { setActiveNote } from "../../store/journal"
 
-export const SideBarItem = ({ title, body, id, date, imageUrls }: Notes) => {
+export const SideBarItem = ({
+  title,
+  body,
+  id,
+  date,
+  imageUrls = [],
+}: Notes) => {
   const dispatch = useAppDispatch()
 
   const newTitle = useMemo(() => {
