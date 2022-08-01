@@ -7,6 +7,7 @@ import {
   registerUserWithEmailPassword,
   singInWithGoogle,
 } from "../../firebase/providers"
+import { clearNotesLogout } from "../journal"
 
 export const checkingAuthentication = ({ email, password }: FormValues) => {
   return async (dispatch: AppDispatch) => {
@@ -78,6 +79,7 @@ export const startLogout = () => {
   return async (dispatch: AppDispatch) => {
     await logoutFireBase()
 
+    dispatch(clearNotesLogout())
     dispatch(logout({}))
   }
 }
